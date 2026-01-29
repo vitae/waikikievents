@@ -126,10 +126,6 @@ function CheckoutForm() {
             wallets: {
               applePay: 'auto',
               googlePay: 'auto',
-              cashapp: 'auto',
-              paypal: 'auto',
-              venmo: 'auto',
-              us_bank_account: 'auto',
             }
           }} />
         </div>
