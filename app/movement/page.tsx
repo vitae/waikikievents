@@ -4,6 +4,33 @@ import { useState } from 'react';
 
 export default function MovementPage() {
   const [quantity, setQuantity] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  // Stripe checkout handler
+  const handleBuyTickets = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch('/api/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ quantity }),
+      });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        setError(data.error || 'Unable to start checkout.');
+      }
+    } catch (err: any) {
+      setError('An error occurred. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white px-4 py-8">
       <div className="w-full max-w-md bg-black/10 border border-red-500/50 rounded-3xl overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.3),0_0_30px_rgba(255,0,0,0.4)]">
@@ -49,7 +76,7 @@ export default function MovementPage() {
           <span className="flex-1 h-px bg-red-500" />
         </div>
         <div className="mx-4 my-6 p-6 rounded-2xl bg-black/10 border border-red-500/50 shadow-[0_0_15px_rgba(255,0,0,0.3)]">
-          <form className="flex flex-col items-center gap-4 w-full">
+          <form className="flex flex-col items-center gap-4 w-full" onSubmit={handleBuyTickets}>
             <div className="w-full flex flex-col items-center">
               <label className="block text-sm mb-2 text-red-500 drop-shadow-[0_0_8px_rgba(255,0,0,0.6)] text-center">Number of Tickets</label>
               <select
@@ -68,9 +95,11 @@ export default function MovementPage() {
             <button
               type="submit"
               className="w-full px-8 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white font-bold text-2xl rounded-full shadow-lg shadow-red-500/40 border border-white/20 hover:from-red-500 hover:to-red-400 transition disabled:opacity-50 uppercase"
+              disabled={loading}
             >
-              BUY TICKETS
+              {loading ? 'Redirecting...' : 'BUY TICKETS'}
             </button>
+            {error && <p className="text-red-400 text-sm mt-2">{error}</p>}
           </form>
         </div>
         <div className="px-6 pb-4 text-center">
