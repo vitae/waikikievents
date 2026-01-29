@@ -68,10 +68,131 @@ const Footer = dynamic(() => import('@/components/Footer'), {
 });
 
 export default function Home() {
+  const [activeSection, setActiveSection] = useState('hero');
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [isScrolling, setIsScrolling] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Section IDs for scroll detection
+  const sectionIds = ['hero', 'about', 'practices', 'token', 'community'];
+
+  // Scroll handler with momentum detection
+  useEffect(() => {
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const scrollTop = window.scrollY;
+          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+          setScrollProgress(progress);
+
+          // Detect active section
+          const viewportMiddle = scrollTop + window.innerHeight / 2;
+          for (let i = sectionIds.length - 1; i >= 0; i--) {
+            const el = document.getElementById(sectionIds[i]);
+            if (el && el.offsetTop <= viewportMiddle) {
+              setActiveSection(sectionIds[i]);
+              break;
+            }
+          }
+        });
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [sectionIds]);
+
+  // Smooth scroll to section with iOS-like behavior
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      // Calculate offset for fixed headers
+      const offset = window.innerWidth >= 768 ? 80 : 0;
+      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth',
+      });
+    }
+  };
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-black text-white">
-      <h1 className="text-4xl font-bold mb-4">Waikiki Events</h1>
-      <p className="text-lg">Welcome! This is a minimal test page. If you see this, your deployment is working.</p>
+    <div className="app-shell flex flex-col items-center justify-center min-h-screen px-4 max-w-screen-md mx-auto">
+      {/* 3D Matrix Background */}
+      <MatrixBackground />
+
+      {/* Scroll Progress Bar - iOS style thin line */}
+      <div 
+        className="fixed top-0 left-0 right-0 h-[2px] z-[60] bg-transparent"
+        style={{ paddingTop: 'env(safe-area-inset-top, 0px)' }}
+      >
+        <div
+          className="h-full transition-all duration-100 ease-out"
+          style={{ 
+            width: `${scrollProgress}%`,
+            background: 'linear-gradient(90deg, #ef4444, #f87171)',
+            boxShadow: '0 0 10px rgba(239,68,68,0.8)',
+            opacity: isScrolling ? 1 : 0,
+            transition: 'opacity 0.3s ease, width 0.1s ease-out',
+          }}
+        />
+      </div>
+
+      {/* Top Navigation - Desktop only */}
+      <div className="hidden md:block">
+        <GlassNav
+          activeSection={activeSection}
+          onNavigate={scrollToSection}
+        />
+      </div>
+
+      {/* Main Content */}
+      <main ref={containerRef} className="app-content relative z-10 flex flex-col items-center justify-center w-full max-w-screen-md mx-auto px-2">
+        <Suspense fallback={<SkeletonHero />}>
+          <section id="hero">
+            <HeroSection />
+          </section>
+        </Suspense>
+
+        <Suspense fallback={<SkeletonSection className="min-h-screen p-8" />}>
+          <section id="about">
+            <AboutSection />
+          </section>
+        </Suspense>
+
+        <Suspense fallback={<SkeletonSection className="min-h-screen p-8" />}>
+          <section id="practices">
+            <PracticesSection />
+          </section>
+        </Suspense>
+
+        <Suspense fallback={<SkeletonSection className="min-h-screen p-8" />}>
+          <section id="token">
+            <TokenSection />
+          </section>
+        </Suspense>
+
+        <Suspense fallback={<SkeletonSection className="min-h-screen p-8" />}>
+          <section id="community">
+            <CommunitySection />
+          </section>
+        </Suspense>
+
+        <Suspense fallback={<div className="h-32" />}>
+          <Footer />
+        </Suspense>
+      </main>
+
+      {/* Bottom Navigation - Mobile only */}
+      <BottomNav 
+        activeSection={activeSection} 
+        onNavigate={scrollToSection} 
+      />
     </div>
   );
 }

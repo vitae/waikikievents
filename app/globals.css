@@ -1,0 +1,448 @@
+@media (max-width: 768px) {
+  html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .section-container {
+    width: 100%;
+    max-width: 340px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0;
+    padding-right: 0;
+    box-sizing: border-box;
+  }
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   VITAEGIS - Global Styles
+   Ancient Wisdom × Cyberpunk Aesthetics
+   Health • Stealth • Wealth
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* Core palette */
+  --vitae-green: #00ff00;
+  --vitae-green-dim: #003311;
+  --vitae-green-glow: rgba(0, 255, 65, 0.5);
+  --vitae-black: #000000;
+  --vitae-white: #ffffff;
+  
+  /* ═══════════════════════════════════════════════════════════════════════════════
+     Section Container Utility - Global Alignment
+     ═══════════════════════════════════════════════════════════════════════════════ */
+  .section-container {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-left: 0;
+    padding-right: 0;
+    box-sizing: border-box;
+  }
+
+  @media (min-width: 640px) {
+    .section-container {
+      max-width: 900px;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-container {
+      max-width: 1400px;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  /* Safe area insets for notched devices */
+  --sat: env(safe-area-inset-top, 0px);
+  --sar: env(safe-area-inset-right, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+  --sal: env(safe-area-inset-left, 0px);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   Base Styles - Native App Feel
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+* {
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* Prevent text selection highlight on mobile */
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    overflow-x: hidden !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+  scroll-behavior: smooth;
+  /* Use dynamic viewport height for mobile browsers */
+  height: 100%;
+  height: -webkit-fill-available;
+  /* Prevent overscroll bounce */
+  overscroll-behavior: none;
+}
+
+body {
+    overflow-x: hidden !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+  font-family: 'Jost', 'Century Gothic', 'CenturyGothic', 'AppleGothic', sans-serif;
+  font-weight: 500;
+  background-color: var(--vitae-black);
+  color: var(--vitae-white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Prevent horizontal overflow */
+  overflow-x: hidden;
+  /* Use dynamic viewport height */
+  min-height: 100%;
+  min-height: 100dvh;
+  min-height: -webkit-fill-available;
+  /* Prevent overscroll bounce on iOS */
+  overscroll-behavior: none;
+  /* Prevent pull-to-refresh */
+  overscroll-behavior-y: contain;
+  /* Enable momentum scrolling on iOS */
+  -webkit-overflow-scrolling: touch;
+  /* Remove extra paddings for perfect centering */
+  padding-top: 0;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+/* Ensure Futura Medium is applied everywhere */
+h1, h2, h3, h4, h5, h6,
+p, span, a, button, input, textarea, select, label, div {
+  font-family: 'Jost', 'Century Gothic', 'CenturyGothic', 'AppleGothic', sans-serif;
+  font-weight: 500;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   Mobile App Container
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+.app-container {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 100vh;
+  min-height: 100dvh;
+  min-height: -webkit-fill-available;
+  overflow-x: hidden;
+}
+
+.app-content {
+  position: relative;
+  width: 100%;
+  /* Account for bottom nav on mobile */
+  padding-bottom: calc(72px + var(--sab));
+}
+
+@media (min-width: 768px) {
+  .app-content {
+    padding-bottom: 2rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   Scrollbar Styling
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--vitae-green-dim);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--vitae-green);
+}
+
+/* Hide scrollbar on mobile for cleaner look */
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  
+  * {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Firefox */
+@media (min-width: 769px) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--vitae-green-dim) transparent;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   Selection
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+::selection {
+  background-color: var(--vitae-green);
+  color: var(--vitae-black);
+}
+
+::-moz-selection {
+  background-color: var(--vitae-green);
+  color: var(--vitae-black);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   Focus States
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+:focus-visible {
+  outline: 2px solid var(--vitae-green);
+  outline-offset: 2px;
+}
+
+/* Remove focus outline on touch devices */
+@media (hover: none) {
+  :focus-visible {
+    outline: none;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   Touch Interactions
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+button, a, [role="button"] {
+  /* Minimum touch target size */
+  min-height: 44px;
+  /* Prevent double-tap zoom */
+  touch-action: manipulation;
+}
+
+/* Active state for touch feedback */
+button:active, a:active, [role="button"]:active {
+  transform: scale(0.98);
+  transition: transform 0.1s ease;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   Animations
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px var(--vitae-green-glow);
+  }
+  50% {
+    box-shadow: 0 0 40px var(--vitae-green), 0 0 60px var(--vitae-green-glow);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Animation Classes */
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out forwards;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Animation Delays */
+.animation-delay-100 { animation-delay: 100ms; }
+.animation-delay-200 { animation-delay: 200ms; }
+.animation-delay-300 { animation-delay: 300ms; }
+.animation-delay-400 { animation-delay: 400ms; }
+.animation-delay-500 { animation-delay: 500ms; }
+.animation-delay-600 { animation-delay: 600ms; }
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   Glass Effect Utilities
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+.glass {
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-strong {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   Neon Effects
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+.neon-text {
+  color: var(--vitae-green);
+  text-shadow: 0 0 10px var(--vitae-green-glow), 0 0 20px var(--vitae-green-glow);
+}
+
+.neon-border {
+  border-color: var(--vitae-green);
+  box-shadow: 0 0 10px var(--vitae-green-glow), inset 0 0 10px rgba(0, 255, 65, 0.1);
+}
+
+.neon-glow {
+  box-shadow: 0 0 20px var(--vitae-green-glow), 0 0 40px rgba(0, 255, 65, 0.3);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   Custom Utilities
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--vitae-green) 0%, #4ade80 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Hide scrollbar for specific elements */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Safe area utilities */
+.pt-safe { padding-top: var(--sat); }
+.pb-safe { padding-bottom: var(--sab); }
+.pl-safe { padding-left: var(--sal); }
+.pr-safe { padding-right: var(--sar); }
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   Responsive Adjustments
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 375px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   Fix for iOS 100vh issue
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+@supports (-webkit-touch-callout: none) {
+  .min-h-screen {
+    min-height: -webkit-fill-available;
+  }
+  
+  .h-screen {
+    height: -webkit-fill-available;
+  }
+}
