@@ -128,8 +128,50 @@ function CheckoutForm() {
               googlePay: 'auto',
             }
           }} />
+          {/* Venmo link below US bank account */}
+          <div className="mt-4 flex flex-col items-center">
+            <VenmoCheckoutLink quantity={quantity} />
+          </div>
         </div>
       </div>
+// VenmoCheckoutLink component
+function VenmoCheckoutLink({ quantity }: { quantity: number }) {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleVenmoCheckout = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch('/api/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ quantity, venmo: true }),
+      });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        setError('Could not create Venmo checkout session.');
+      }
+    } catch (err: any) {
+      setError('Error: ' + (err.message || err.toString()));
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <button
+      type="button"
+      onClick={handleVenmoCheckout}
+      className="mt-2 px-4 py-2 bg-[#3D95CE] text-white rounded-lg font-semibold shadow hover:bg-[#2d6b94] transition"
+      disabled={loading}
+    >
+      {loading ? 'Redirecting to Venmo…' : 'Pay with Venmo (via Stripe)'}
+    </button>
+  );
+}
 
       <button
         type="submit"
