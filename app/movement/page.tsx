@@ -119,22 +119,17 @@ function CheckoutForm() {
         </select>
       </div>
 
-      {/* List available payment options visually */}
-      <div className="w-full flex flex-col items-center mb-2">
-        <div className="flex items-center gap-4 justify-center text-white text-base font-semibold">
-          <span className="flex items-center gap-1"><img src="/apple-pay-logo.svg" alt="Apple Pay" className="h-6 inline" /> Apple Pay</span>
-          <span className="flex items-center gap-1"><img src="/venmo-logo.svg" alt="Venmo" className="h-6 inline" /> Venmo</span>
-          <span className="flex items-center gap-1"><svg width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="16" rx="3" fill="#fff"/><rect x="1" y="1" width="22" height="14" rx="2" fill="#32325d"/><text x="12" y="12" text-anchor="middle" fill="#fff" font-size="10" font-family="Arial, sans-serif">Card</text></svg> Card</span>
-        </div>
-        <span className="text-xs text-red-400 mt-1">All major cards, Apple Pay, and Venmo accepted</span>
-      </div>
 
       <div className="w-full">
         <div className="p-5 rounded-2xl border border-red-500/50 bg-black/10 shadow-[0_0_15px_rgba(255,0,0,0.3)]">
           <PaymentElement options={{
             wallets: {
               applePay: 'auto',
-              googlePay: 'auto'
+              googlePay: 'auto',
+              cashapp: 'auto',
+              paypal: 'auto',
+              venmo: 'auto',
+              us_bank_account: 'auto',
             }
           }} />
         </div>
