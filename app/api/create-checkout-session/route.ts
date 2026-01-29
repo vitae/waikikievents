@@ -19,6 +19,9 @@ export async function POST(req: NextRequest) {
           quantity: ticketQuantity,
         },
       ],
+      payment_method_options: {
+        link: { enabled: false },
+      },
       success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/success`,
       cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/cancel`,
       metadata: {
