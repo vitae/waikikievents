@@ -20,7 +20,7 @@ export default function MovementPage() {
       });
       const data = await res.json();
       if (data.url) {
-        window.location.href = data.url;
+        window.location.assign(data.url);
       } else {
         setError(data.error || 'Unable to start checkout.');
       }
