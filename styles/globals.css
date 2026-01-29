@@ -10,9 +10,9 @@
 
 :root {
   /* Core palette */
-  --vitae-green: #00ff00;
-  --vitae-green-dim: #003311;
-  --vitae-green-glow: #00ff0080;
+  --vitae-green: #FF0000;
+  --vitae-green-dim: #330000;
+  --vitae-green-glow: #FF000080;
   --vitae-black: #000000;
   --vitae-white: #ffffff;
   
@@ -25,7 +25,7 @@
   /* Glow effects */
   --glow-sm: 0 0 10px var(--vitae-green-glow);
   --glow-md: 0 0 20px var(--vitae-green-glow), 0 0 40px var(--vitae-green-glow);
-  --glow-lg: 0 0 40px var(--vitae-green), 0 0 80px var(--vitae-green-glow), 0 0 120px rgba(0, 255, 65, 0.25);
+  --glow-lg: 0 0 40px var(--vitae-green), 0 0 80px var(--vitae-green-glow), 0 0 120px rgba(255, 0, 0, 0.25);
 }
 
 /* Base styles */
@@ -99,7 +99,6 @@ a {
   transition: color 0.3s ease;
 }
 
-a:hover {
   color: var(--vitae-green);
 }
 

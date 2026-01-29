@@ -14,20 +14,20 @@ module.exports = {
       },
       colors: {
         matrix: {
-          green: '#00ff41',
-          dark: '#003311',
-          glow: 'rgba(0, 255, 65, 0.5)',
+          green: '#FF0000',
+          dark: '#330000',
+          glow: 'rgba(255, 0, 0, 0.5)',
         },
         vitae: {
-          green: '#00ff41',
+          green: '#FF0000',
           black: '#000000',
           white: '#ffffff',
         },
       },
       boxShadow: {
-        'neon-sm': '0 0 10px rgba(0, 255, 65, 0.5)',
-        'neon-md': '0 0 20px rgba(0, 255, 65, 0.5), 0 0 40px rgba(0, 255, 65, 0.3)',
-        'neon-lg': '0 0 40px #00ff41, 0 0 80px rgba(0, 255, 65, 0.5), 0 0 120px rgba(0, 255, 65, 0.25)',
+        'neon-sm': '0 0 10px rgba(255, 0, 0, 0.5)',
+        'neon-md': '0 0 20px rgba(255, 0, 0, 0.5), 0 0 40px rgba(255, 0, 0, 0.3)',
+        'neon-lg': '0 0 40px #FF0000, 0 0 80px rgba(255, 0, 0, 0.5), 0 0 120px rgba(255, 0, 0, 0.25)',
         'glass': '0 8px 32px rgba(0, 0, 0, 0.4)',
       },
       backdropBlur: {
@@ -40,8 +40,8 @@ module.exports = {
       },
       keyframes: {
         'pulse-glow': {
-          '0%, 100%': { boxShadow: '0 0 20px rgba(0, 255, 65, 0.5)' },
-          '50%': { boxShadow: '0 0 40px #00ff41, 0 0 60px rgba(0, 255, 65, 0.5)' },
+          '0%, 100%': { boxShadow: '0 0 20px rgba(255, 0, 0, 0.5)' },
+          '50%': { boxShadow: '0 0 40px #FF0000, 0 0 60px rgba(255, 0, 0, 0.5)' },
         },
         'fade-in': {
           from: { opacity: '0', transform: 'translateY(20px)' },
