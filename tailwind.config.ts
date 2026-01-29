@@ -40,7 +40,7 @@ const config: Config = {
         'ig-2xl': ['28px', { lineHeight: '36px', letterSpacing: '-0.02em' }],
       },
       
-      // Vitaegis colors
+      // Waikiki Events colors
       colors: {
         vitae: {
           green: '#00ff00',

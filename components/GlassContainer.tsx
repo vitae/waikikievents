@@ -3,7 +3,7 @@
 import { ReactNode, CSSProperties } from 'react';
 
 /* ═══════════════════════════════════════════════════════════════════════════════
-   VITAEGIS - GlassContainer Component
+  Waikiki Events - GlassContainer Component
    Glassmorphic Card with Instagram Spacing System
    ═══════════════════════════════════════════════════════════════════════════════ */
 

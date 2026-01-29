@@ -1,11 +1,11 @@
 {
-  "name": "VITAEGIS",
-  "short_name": "VITAEGIS",
+  "name": "Waikiki Events",
+  "short_name": "WaikikiEvents",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",
-  "theme_color": "#00ff6a",
-  "description": "Ancient wisdom meets Cyberspirituality. Evolve your energy through Zen Meditation, Kundalini Yoga, Tai Chi, and Qi Gong.",
+  "theme_color": "#ef4444",
+  "description": "Waikiki Events: Yoga, Meditation, and Movement at Le'ahi Beach Park. Ancient wisdom, modern community. Join us in Waikiki, Honolulu.",
   "icons": [
     {
       "src": "/icon-192.png",

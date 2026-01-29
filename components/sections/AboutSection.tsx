@@ -49,7 +49,7 @@ export default function AboutSection() {
             {/* Section Label */}
             <div className="reveal opacity-0 translate-y-4 transition-all duration-700 [&.revealed]:opacity-100 [&.revealed]:translate-y-0">
               <span className="text-red-500 text-sm font-medium tracking-[0.3em] uppercase">
-                About Vitaegis
+                About Waikiki Events
               </span>
             </div>
 
@@ -67,7 +67,7 @@ export default function AboutSection() {
             {/* Description */}
             <div className="reveal opacity-0 translate-y-4 transition-all duration-700 [&.revealed]:opacity-100 [&.revealed]:translate-y-0 mt-6 space-y-4 text-white/70 text-base sm:text-lg leading-relaxed">
               <p>
-                Vitaegis is a portmanteau of the words Vitae and Aegis, which means the protection of life. Vitaegis bridges millennia of spiritual wisdom with modern cyber technology. True wellness extends beyond the physical: it encompasses mind, body, spirit, and now; cyber presence. <br />
+                Waikiki Events is a community that bridges ancient wisdom with modern connection. True wellness extends beyond the physical: it encompasses mind, body, spirit, and community. <br />
                 </p> 
               <p>
                 We will help you to look within and find inner peace through foundational practices and secret knowledge. Join our community united in our shared pursuit of wellness and enhanced life experiences. <br />

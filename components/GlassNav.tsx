@@ -66,7 +66,7 @@ export default function GlassNav({ activeSection, onNavigate }: GlassNavProps) {
               <div className="absolute -inset-1 bg-vitae-green/20 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
             <span className="text-lg lg:text-xl font-semibold tracking-wider hidden lg:block">
-              VITAEGIS
+              Waikiki Events
             </span>
           </button>
 

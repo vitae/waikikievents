@@ -6,7 +6,7 @@ import GlassNav from '@/components/GlassNav';
 import BottomNav from '@/components/BottomNav';
 
 /* ═══════════════════════════════════════════════════════════════════════════════
-   VITAEGIS - Main Page
+  Waikiki Events - Main Page
    Native iOS App Experience with Preloading & Optimistic UI
    ═══════════════════════════════════════════════════════════════════════════════ */
 

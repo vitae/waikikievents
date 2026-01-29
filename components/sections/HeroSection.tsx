@@ -4,7 +4,7 @@ import { useRef, useState, useEffect } from 'react';
 import GlassContainer from '@/components/GlassContainer';
 
 /* ═══════════════════════════════════════════════════════════════════════════════
-   VITAEGIS - HeroSection Component
+  Waikiki Events - HeroSection Component
    Instagram-Level Polish with Native iOS Feel
    ═══════════════════════════════════════════════════════════════════════════════ */
 
@@ -80,7 +80,7 @@ export default function HeroSection() {
             textShadow: '0 0 60px rgba(255, 255, 255, 0.1)',
           }}
         >
-          VITAEGIS
+          Waikiki Events
         </h1>
 
         {/* Animated underline */}
@@ -161,7 +161,7 @@ export default function HeroSection() {
                     : '0 0 20px rgba(0, 255, 65, 0.5)',
                 }}
               >
-                Enter Vitaegis
+                Enter Waikiki Events
               </button>
             </a>
 

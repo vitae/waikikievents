@@ -4,41 +4,40 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from '@vercel/analytics/next';
 
 export const metadata: Metadata = {
-  title: 'VITAEGIS | Health • Stealth • Wealth',
+  title: 'Waikiki Events | Yoga • Meditation • Movement',
   description:
-    'Ancient wisdom meets Cyberspirituality. Evolve your energy with  Zen Meditation, Kundalini Yoga, and Yang Tai Chi.',
+    'Waikiki Events: Yoga, Meditation, and Movement at Le\'ahi Beach Park. Ancient wisdom, modern community. Join us in Waikiki, Honolulu.',
   keywords: [
-    'Vitaegis',
-    'Web3',
-    'Zen',
-    'Kundalini',
-    'Tai Chi',
-    'Qi Gong',
+    'Waikiki Events',
+    'Yoga',
+    'Meditation',
+    'Movement',
     'Wellness',
-    'Cryptocurrency',
-    'DeFi',
+    'Honolulu',
+    'Community',
+    'Hawaii',
   ],
-  authors: [{ name: 'Vitaegis' }],
+  authors: [{ name: 'Waikiki Events' }],
   manifest: '/manifest.json',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
-    title: 'VITAEGIS',
+    title: 'Waikiki Events',
   },
   formatDetection: {
     telephone: false,
   },
   openGraph: {
-    title: 'VITAEGIS | Health • Stealth • Wealth',
+    title: 'Waikiki Events | Yoga • Meditation • Movement',
     description:
-      'Ancient wisdom meets Cyberspirituality. Evolve your energy with Zen Meditation, Kundalini Yoga, and Yang Tai Chi.',
+      'Waikiki Events: Yoga, Meditation, and Movement at Le\'ahi Beach Park. Ancient wisdom, modern community. Join us in Waikiki, Honolulu.',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'VITAEGIS | Health • Stealth • Wealth',
+    title: 'Waikiki Events | Yoga • Meditation • Movement',
     description:
-      'Ancient wisdom meets Cyberspirituality. Evolve your energy with Zen Meditation, Kundalini Yoga, and Yang Tai Chi.',
+      'Waikiki Events: Yoga, Meditation, and Movement at Le\'ahi Beach Park. Ancient wisdom, modern community. Join us in Waikiki, Honolulu.',
   },
 };
 

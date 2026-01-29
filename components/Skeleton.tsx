@@ -1,7 +1,7 @@
 'use client';
 
 /* ═══════════════════════════════════════════════════════════════════════════════
-   VITAEGIS - Skeleton Components
+  Waikiki Events - Skeleton Components
    Instagram-Style Loading States
    ═══════════════════════════════════════════════════════════════════════════════ */
 

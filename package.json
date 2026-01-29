@@ -1,7 +1,7 @@
 {
-  "name": "vitaegis",
+  "name": "waikikievents",
   "version": "2.0.1",
-  "description": "VITAEGIS - Ancient Wisdom × Cyberpunk Technology | Health • Stealth • Wealth",
+  "description": "Waikiki Events - Ancient Wisdom × Modern Community | Yoga • Meditation • Movement",
   "private": true,
   "scripts": {
     "dev": "next dev",

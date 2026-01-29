@@ -1,4 +1,4 @@
-# Vitaegis Vitality
+# Waikiki Events
 
 Cyberpunk Neon Green Wellness Platform with Matrix Rain Background
 

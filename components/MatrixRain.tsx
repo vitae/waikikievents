@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// VITAEGIS MATRIX RAIN - Canvas2D Version
+// Waikiki Events MATRIX RAIN - Canvas2D Version
 // Inspired by Rezmason's Matrix (github.com/Rezmason/matrix)
 // Key techniques: Sawtooth wave illumination, non-colliding multi-stream drops
 // ═══════════════════════════════════════════════════════════════════════════════

@@ -80,7 +80,7 @@ export default function PracticesSection() {
             Ancient <span className="text-red-500">Practices</span>
           </h2>
           <p className="mt-4 text-white/70 max-w-2xl mx-auto text-base sm:text-lg">
-            Master the foundational disciplines that form the core of Vitaegis.
+            Master the foundational disciplines that form the core of Waikiki Events.
             Each practice provides unique rewards and unlocks higher levels of evolution.
           </p>
         </GlassContainer>
