@@ -4,9 +4,9 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from '@vercel/analytics/next';
 
 export const metadata: Metadata = {
-  title: 'Waikiki Events | Yoga • Meditation • Movement',
+  title: 'Waikiki Events Aloha Mahalo',
   description:
-    'Waikiki Events: Yoga, Meditation, and Movement at Le\'ahi Beach Park. Ancient wisdom, modern community. Join us in Waikiki, Honolulu.',
+    'Waikiki Events Aloha Mahalo: Community, gratitude, and connection at Le\'ahi Beach Park. Ancient wisdom, modern aloha. Join us in Waikiki, Honolulu.',
   keywords: [
     'Waikiki Events',
     'Yoga',
