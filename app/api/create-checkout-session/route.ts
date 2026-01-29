@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
     const ticketQuantity = Math.max(1, Math.min(quantity || 1, 10));
 
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
+      payment_method_types: ['card', 'paypal'],
       mode: 'payment',
       line_items: [
         {
