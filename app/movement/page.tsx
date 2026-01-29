@@ -36,7 +36,7 @@ export default function MovementPage() {
       <div className="w-full max-w-md bg-black/10 border border-red-500/50 rounded-3xl overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.3),0_0_30px_rgba(255,0,0,0.4)]">
         <div className="h-1 bg-gradient-to-r from-transparent via-red-500/80 to-transparent" />
         <div className="px-6 pt-8 pb-4 text-center border-b border-white/10">
-          <p className="text-red-500 text-base tracking-[0.3em] uppercase mb-2">VITAEGIS Presents</p>
+          <p className="text-red-500 text-base tracking-[0.3em] uppercase mb-2">VITAEGIS PRESENTS</p>
           <h1 className="text-[2.75rem] sm:text-5xl font-black text-white leading-tight drop-shadow-[0_0_10px_rgba(255,0,0,0.8)]">
             MOVEMENT
           </h1>
@@ -65,42 +65,42 @@ export default function MovementPage() {
             <p>💧 Bring water</p>
           </div>
           <div className="pt-2">
-            <button className="inline-block px-8 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white font-bold text-2xl rounded-full shadow-lg shadow-red-500/40 border border-white/20 hover:from-red-500 hover:to-red-400 transition cursor-pointer">
-              TICKETS ONLY $9
-            </button>
+            <form className="flex flex-col items-center gap-4 w-full" onSubmit={handleBuyTickets}>
+              <div className="w-full flex flex-col items-center">
+                <label className="block text-sm mb-2 text-red-500 drop-shadow-[0_0_8px_rgba(255,0,0,0.6)] text-center">Number of Tickets</label>
+                <select
+                  value={quantity}
+                  onChange={(e) => setQuantity(Number(e.target.value))}
+                  className="max-w-xs rounded-2xl bg-black/10 border border-red-500/50 p-4 text-white focus:border-red-400 focus:outline-none transition shadow-[0_0_15px_rgba(255,0,0,0.3)] appearance-none"
+                  style={{ textAlignLast: 'center' }}
+                >
+                  {[1, 2, 3, 4, 5].map((q) => (
+                    <option key={q} value={q}>
+                      {q} × $9
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <button
+                type="submit"
+                className="w-full px-8 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white font-bold text-2xl rounded-full shadow-lg shadow-red-500/40 border border-white/20 hover:from-red-500 hover:to-red-400 transition disabled:opacity-50 uppercase"
+                disabled={loading}
+              >
+                {loading ? 'Redirecting...' : 'BUY TICKETS'}
+              </button>
+              {error && <p className="text-red-400 text-sm mt-2">{error}</p>}
+            </form>
+            <div className="mt-4">
+              <span className="inline-block px-8 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white font-bold text-2xl rounded-full shadow-lg shadow-red-500/40 border border-white/20 cursor-default select-none">
+                TICKETS ONLY $9
+              </span>
+            </div>
           </div>
         </div>
-        <div className="flex items-center px-6">
+        <div className="flex items-center px-6 mt-4">
           <span className="flex-1 h-px bg-red-500" />
           <span className="px-4 text-red-500 text-base uppercase tracking-wider">Support the Movement</span>
           <span className="flex-1 h-px bg-red-500" />
-        </div>
-        <div className="mx-4 my-6 p-6 rounded-2xl bg-black/10 border border-red-500/50 shadow-[0_0_15px_rgba(255,0,0,0.3)]">
-          <form className="flex flex-col items-center gap-4 w-full" onSubmit={handleBuyTickets}>
-            <div className="w-full flex flex-col items-center">
-              <label className="block text-sm mb-2 text-red-500 drop-shadow-[0_0_8px_rgba(255,0,0,0.6)] text-center">Number of Tickets</label>
-              <select
-                value={quantity}
-                onChange={(e) => setQuantity(Number(e.target.value))}
-                className="max-w-xs rounded-2xl bg-black/10 border border-red-500/50 p-4 text-white focus:border-red-400 focus:outline-none transition shadow-[0_0_15px_rgba(255,0,0,0.3)] appearance-none"
-                style={{ textAlignLast: 'center' }}
-              >
-                {[1, 2, 3, 4, 5].map((q) => (
-                  <option key={q} value={q}>
-                    {q} × $9
-                  </option>
-                ))}
-              </select>
-            </div>
-            <button
-              type="submit"
-              className="w-full px-8 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white font-bold text-2xl rounded-full shadow-lg shadow-red-500/40 border border-white/20 hover:from-red-500 hover:to-red-400 transition disabled:opacity-50 uppercase"
-              disabled={loading}
-            >
-              {loading ? 'Redirecting...' : 'BUY TICKETS'}
-            </button>
-            {error && <p className="text-red-400 text-sm mt-2">{error}</p>}
-          </form>
         </div>
         <div className="px-6 pb-4 text-center">
           <p className="mt-6 text-white text-sm tracking-wider drop-shadow-[0_0_8px_rgba(255,0,0,0.6)]">
