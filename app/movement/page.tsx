@@ -1,5 +1,9 @@
 'use client';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
+
+// Dynamically import OgreOceanBackground to avoid SSR issues
+const OgreOceanBackground = dynamic(() => import('../../components/OgreOcean/OgreOceanBackground'), { ssr: false });
 import {
   Elements,
   PaymentElement,
@@ -146,140 +150,9 @@ function CheckoutForm() {
   );
 }
 
+
 export default function MovementPage() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
   const [clientSecret, setClientSecret] = useState<string | null>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    const DPR = Math.min(window.devicePixelRatio || 1, 2);
-    const fontSize = window.innerWidth < 768 ? 18 : 22;
-    const columnWidth = fontSize * 1.2; // Slightly wider than font to prevent overlap
-    const words = [' ♥ MOVEMENT', ' ♥ PEACE', ' ♥ ZEN', ' ♥ YOGA', ' ♥ ALOHA', ' ♥ BALANCE', ' ♥ ENERGY', ' ♥ LOVE', ' ♥ BREATH'];
-    const speed = 0.3; // Slow, smooth movement
-
-    let width = window.innerWidth;
-    let height = window.innerHeight;
-    let columns = Math.floor(width / columnWidth);
-    
-    // Each column has: y position, word index, and current letter index
-    // Scatter start positions using a prime multiplier to avoid diagonal pattern
-    let drops = Array.from({ length: columns }, (_, i) => ({
-      y: -((i * 7) % 30) * 2,
-      wordIndex: i % words.length,
-      letterIndex: 0,
-    }));
-
-    // Track recent characters for each column with their fade state
-    const trailLength = 8; // Number of trailing characters per column
-    let trails: { char: string; y: number; age: number }[][] = Array.from({ length: columns }, () => []);
-
-    const resize = () => {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      columns = Math.floor(width / columnWidth);
-      drops = Array.from({ length: columns }, (_, i) => ({
-        y: -((i * 7) % 30) * 2,
-        wordIndex: i % words.length,
-        letterIndex: 0,
-      }));
-      trails = Array.from({ length: columns }, () => []);
-
-      canvas.width = width * DPR;
-      canvas.height = height * DPR;
-      canvas.style.width = `${width}px`;
-      canvas.style.height = `${height}px`;
-
-      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-      ctx.font = `bold ${fontSize}px Jost, sans-serif`;
-    };
-
-    let isPaused = false;
-    let animationId: number;
-
-    const draw = () => {
-      // Clear to pure black each frame
-      ctx.fillStyle = '#000000';
-      ctx.fillRect(0, 0, width, height);
-
-      if (!isPaused) {
-        for (let i = 0; i < drops.length; i++) {
-          const d = drops[i];
-          const word = words[d.wordIndex];
-          const prevY = Math.floor(d.y - speed);
-          const currY = Math.floor(d.y);
-          
-          // Add new character when crossing to a new grid row
-          if (currY !== prevY && d.y > 0) {
-            const char = word[d.letterIndex];
-            trails[i].unshift({ char, y: currY * fontSize, age: 0 });
-            
-            // Limit trail length
-            if (trails[i].length > trailLength) {
-              trails[i].pop();
-            }
-            
-            d.letterIndex = (d.letterIndex + 1) % word.length;
-          }
-
-          // Draw trail with fading opacity
-          for (let j = 0; j < trails[i].length; j++) {
-            const t = trails[i][j];
-            const opacity = 1 - (t.age / trailLength);
-            if (opacity > 0) {
-              ctx.fillStyle = `rgba(255, 0, 0, ${opacity})`;
-              ctx.fillText(t.char, i * columnWidth, t.y);
-            }
-            t.age += 0.15; // Fade speed
-          }
-          
-          // Remove fully faded characters
-          trails[i] = trails[i].filter(t => t.age < trailLength);
-
-          // Move drop down smoothly
-          d.y += speed;
-
-          // Reset to top when off screen
-          if (d.y * fontSize > height) {
-            d.y = -5;
-            d.wordIndex = (d.wordIndex + 1) % words.length;
-            d.letterIndex = 0;
-          }
-        }
-      } else {
-        // When paused, fill the canvas with black only
-        ctx.fillStyle = '#000000';
-        ctx.fillRect(0, 0, width, height);
-      }
-
-      animationId = requestAnimationFrame(draw);
-    };
-
-    // Touch handlers for pausing on iPhone
-    const handleTouchStart = () => { isPaused = true; };
-    const handleTouchEnd = () => { isPaused = false; };
-
-    resize();
-    window.addEventListener('resize', resize);
-    canvas.addEventListener('touchstart', handleTouchStart);
-    canvas.addEventListener('touchend', handleTouchEnd);
-    document.addEventListener('touchstart', handleTouchStart);
-    document.addEventListener('touchend', handleTouchEnd);
-    animationId = requestAnimationFrame(draw);
-    
-    return () => {
-      window.removeEventListener('resize', resize);
-      canvas.removeEventListener('touchstart', handleTouchStart);
-      canvas.removeEventListener('touchend', handleTouchEnd);
-      document.removeEventListener('touchstart', handleTouchStart);
-      document.removeEventListener('touchend', handleTouchEnd);
-      cancelAnimationFrame(animationId);
-    };
-  }, []);
 
   useEffect(() => {
     fetch('/api/create-payment-intent', {
@@ -293,14 +166,8 @@ export default function MovementPage() {
 
   return (
     <>
-      {/* Solid black background */}
-      <div className="fixed inset-0 bg-black z-0" />
-      
-      {/* Red Matrix Rain - always rendered */}
-      <canvas
-        ref={canvasRef}
-        className="fixed inset-0 w-screen h-screen z-[5] pointer-events-none"
-      />
+      {/* Animated Ocean Background */}
+      <OgreOceanBackground />
 
       {clientSecret && (
         <Elements
@@ -344,10 +211,8 @@ export default function MovementPage() {
                 </div>
                 
                 <div className="space-y-4">
-                  <p className="text-2xl sm:text-3xl text-white font-semibold drop-shadow-[0_0_8px_rgba(255,0,0,0.6)]">🧘 Movement</p>
-                  <p className="text-white font-bold text-xl sm:text-2xl drop-shadow-[0_0_8px_rgba(255,0,0,0.6)]">4:30 PM</p>
-                  <p className="text-2xl sm:text-3xl text-white font-semibold pt-2 drop-shadow-[0_0_8px_rgba(255,0,0,0.6)]">🕉️ Yoga</p>
-                  <p className="text-white font-bold text-xl sm:text-2xl drop-shadow-[0_0_8px_rgba(255,0,0,0.6)]">5:30 PM</p>
+                  <p className="text-4xl sm:text-6xl text-white font-semibold pt-2 drop-shadow-[0_0_8px_rgba(255,0,0,0.6)]">🕉️ Yoga</p>
+                  <p className="text-white font-bold text-3xl sm:text-5xl drop-shadow-[0_0_8px_rgba(255,0,0,0.6)]">5:30 PM</p>
                 </div>
 
                 <div className="pt-2">
